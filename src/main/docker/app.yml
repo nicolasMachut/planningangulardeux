@@ -1,0 +1,14 @@
+version: '2'
+services:
+    planningangulardeux-app:
+        image: planningangulardeux
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - SPRING_DATASOURCE_URL=jdbc:postgresql://planningangulardeux-postgresql:5432/planningAngularDeux
+            - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
+        ports:
+            - 8080:8080
+    planningangulardeux-postgresql:
+        extends:
+            file: postgresql.yml
+            service: planningangulardeux-postgresql

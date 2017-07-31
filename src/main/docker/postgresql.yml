@@ -1,0 +1,11 @@
+version: '2'
+services:
+    planningangulardeux-postgresql:
+        image: postgres:9.6.2
+        # volumes:
+        #     - ~/volumes/jhipster/planningAngularDeux/postgresql/:/var/lib/postgresql/data/
+        environment:
+            - POSTGRES_USER=planningAngularDeux
+            - POSTGRES_PASSWORD=
+        ports:
+            - 5432:5432
