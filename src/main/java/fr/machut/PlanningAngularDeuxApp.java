@@ -54,7 +54,6 @@ public class PlanningAngularDeuxApp {
         }
     }
 
-
     /**
      * Main method, used to run the application.
      *
