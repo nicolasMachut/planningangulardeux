@@ -6,6 +6,7 @@ export class Employee implements BaseEntity {
         public firstName?: string,
         public lastName?: string,
         public birthDate?: any,
+        public companyId?: number,
     ) {
     }
 }

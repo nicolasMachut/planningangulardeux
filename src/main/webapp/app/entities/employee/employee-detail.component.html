@@ -16,6 +16,12 @@
         <dd>
             <span>{{employee.birthDate | date:'mediumDate'}}</span>
         </dd>
+        <dt><span jhiTranslate="planningAngularDeuxApp.employee.company">Company</span></dt>
+        <dd>
+            <div *ngIf="employee.companyId">
+                <a [routerLink]="['/company', employee.companyId]">{{employee.companyName}}</a>
+            </div>
+        </dd>
     </dl>
 
     <button type="submit"

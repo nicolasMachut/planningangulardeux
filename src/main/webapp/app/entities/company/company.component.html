@@ -1,10 +1,10 @@
 <div>
     <h2>
-        <span jhiTranslate="planningAngularDeuxApp.employee.home.title">Employees</span>
-        <button class="btn btn-primary float-right jh-create-entity create-employee" [routerLink]="['/', { outlets: { popup: ['employee-new'] } }]">
+        <span jhiTranslate="planningAngularDeuxApp.company.home.title">Companies</span>
+        <button class="btn btn-primary float-right jh-create-entity create-company" [routerLink]="['/', { outlets: { popup: ['company-new'] } }]">
             <span class="fa fa-plus"></span>
-            <span  jhiTranslate="planningAngularDeuxApp.employee.home.createLabel">
-            Create new Employee
+            <span  jhiTranslate="planningAngularDeuxApp.company.home.createLabel">
+            Create new Company
             </span>
         </button>
     </h2>
@@ -12,46 +12,36 @@
     <div class="row">
     </div>
     <br/>
-    <div class="table-responsive" *ngIf="employees">
+    <div class="table-responsive" *ngIf="companies">
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="firstName"><span jhiTranslate="planningAngularDeuxApp.employee.firstName">First Name</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="lastName"><span jhiTranslate="planningAngularDeuxApp.employee.lastName">Last Name</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="birthDate"><span jhiTranslate="planningAngularDeuxApp.employee.birthDate">Birth Date</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="companyName"><span jhiTranslate="planningAngularDeuxApp.employee.company">Company</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="name"><span jhiTranslate="planningAngularDeuxApp.company.name">Name</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let employee of employees ;trackBy: trackId">
-                <td><a [routerLink]="['../employee', employee.id ]">{{employee.id}}</a></td>
-                <td>{{employee.firstName}}</td>
-                <td>{{employee.lastName}}</td>
-                <td>{{employee.birthDate | date:'mediumDate'}}</td>
-                <td>
-                    <div *ngIf="employee.companyId">
-                        <a [routerLink]="['../company', employee.companyId  ]" >{{employee.companyName}}</a>
-                    </div>
-                </td>
+            <tr *ngFor="let company of companies ;trackBy: trackId">
+                <td><a [routerLink]="['../company', company.id ]">{{company.id}}</a></td>
+                <td>{{company.name}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"
-                                [routerLink]="['../employee', employee.id ]"
+                                [routerLink]="['../company', company.id ]"
                                 class="btn btn-info btn-sm">
                             <span class="fa fa-eye"></span>
                             <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
                         </button>
                         <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'employee/'+ employee.id + '/edit'} }]"
+                                [routerLink]="['/', { outlets: { popup: 'company/'+ company.id + '/edit'} }]"
                                 replaceUrl="true"
                                 class="btn btn-primary btn-sm">
                             <span class="fa fa-pencil"></span>
                             <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
                         </button>
                         <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'employee/'+ employee.id + '/delete'} }]"
+                                [routerLink]="['/', { outlets: { popup: 'company/'+ company.id + '/delete'} }]"
                                 replaceUrl="true"
                                 class="btn btn-danger btn-sm">
                             <span class="fa fa-remove"></span>
@@ -63,7 +53,7 @@
             </tbody>
         </table>
     </div>
-        <div *ngIf="employees && employees.length">
+        <div *ngIf="companies && companies.length">
             <div class="row justify-content-center">
                 <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
             </div>

@@ -29,6 +29,7 @@ spring:
         url: jdbc:postgresql://localhost:5432/planningAngularDeux
         username: planningAngularDeux
         password: planningAngularDeux
+        driverClassName: org.postgresql.Driver
     jpa:
         database-platform: io.github.jhipster.domain.util.FixedPostgreSQL82Dialect
         database: POSTGRESQL

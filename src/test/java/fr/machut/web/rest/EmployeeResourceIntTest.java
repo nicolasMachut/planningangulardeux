@@ -3,6 +3,7 @@ package fr.machut.web.rest;
 import fr.machut.PlanningAngularDeuxApp;
 
 import fr.machut.domain.Employee;
+import fr.machut.domain.Company;
 import fr.machut.repository.EmployeeRepository;
 import fr.machut.service.EmployeeService;
 import fr.machut.service.dto.EmployeeDTO;
@@ -97,6 +98,11 @@ public class EmployeeResourceIntTest {
             .firstName(DEFAULT_FIRST_NAME)
             .lastName(DEFAULT_LAST_NAME)
             .birthDate(DEFAULT_BIRTH_DATE);
+        // Add required entity
+        Company company = CompanyResourceIntTest.createEntity(em);
+        em.persist(company);
+        em.flush();
+        employee.setCompany(company);
         return employee;
     }
 

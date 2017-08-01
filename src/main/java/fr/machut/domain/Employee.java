@@ -36,6 +36,10 @@ public class Employee implements Serializable {
     @Column(name = "birth_date", nullable = false)
     private LocalDate birthDate;
 
+    @ManyToOne(optional = false)
+    @NotNull
+    private Company company;
+
     public Long getId() {
         return id;
     }
@@ -81,6 +85,19 @@ public class Employee implements Serializable {
 
     public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public Employee company(Company company) {
+        this.company = company;
+        return this;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
     }
 
     @Override

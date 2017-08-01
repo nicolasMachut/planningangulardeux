@@ -4,6 +4,8 @@ package fr.machut.service.dto;
 import java.time.LocalDate;
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -21,6 +23,10 @@ public class EmployeeDTO implements Serializable {
 
     @NotNull
     private LocalDate birthDate;
+
+    private Long companyId;
+
+    private String companyName;
 
     public Long getId() {
         return id;
@@ -52,6 +58,22 @@ public class EmployeeDTO implements Serializable {
 
     public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public Long getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(Long companyId) {
+        this.companyId = companyId;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
 
     @Override

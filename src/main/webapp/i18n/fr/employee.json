@@ -17,7 +17,8 @@
             },
             "firstName": "First Name",
             "lastName": "Last Name",
-            "birthDate": "Birth Date"
+            "birthDate": "Birth Date",
+            "company": "Company"
         }
     }
 }

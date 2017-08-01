@@ -6,28 +6,22 @@ import { Observable } from 'rxjs/Rx';
 import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
-import { Employee } from './employee.model';
-import { EmployeePopupService } from './employee-popup.service';
-import { EmployeeService } from './employee.service';
-import { Company, CompanyService } from '../company';
-import { ResponseWrapper } from '../../shared';
+import { Company } from './company.model';
+import { CompanyPopupService } from './company-popup.service';
+import { CompanyService } from './company.service';
 
 @Component({
-    selector: 'jhi-employee-dialog',
-    templateUrl: './employee-dialog.component.html'
+    selector: 'jhi-company-dialog',
+    templateUrl: './company-dialog.component.html'
 })
-export class EmployeeDialogComponent implements OnInit {
+export class CompanyDialogComponent implements OnInit {
 
-    employee: Employee;
+    company: Company;
     isSaving: boolean;
-
-    companies: Company[];
-    birthDateDp: any;
 
     constructor(
         public activeModal: NgbActiveModal,
         private alertService: JhiAlertService,
-        private employeeService: EmployeeService,
         private companyService: CompanyService,
         private eventManager: JhiEventManager
     ) {
@@ -35,8 +29,6 @@ export class EmployeeDialogComponent implements OnInit {
 
     ngOnInit() {
         this.isSaving = false;
-        this.companyService.query()
-            .subscribe((res: ResponseWrapper) => { this.companies = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
     }
 
     clear() {
@@ -45,22 +37,22 @@ export class EmployeeDialogComponent implements OnInit {
 
     save() {
         this.isSaving = true;
-        if (this.employee.id !== undefined) {
+        if (this.company.id !== undefined) {
             this.subscribeToSaveResponse(
-                this.employeeService.update(this.employee));
+                this.companyService.update(this.company));
         } else {
             this.subscribeToSaveResponse(
-                this.employeeService.create(this.employee));
+                this.companyService.create(this.company));
         }
     }
 
-    private subscribeToSaveResponse(result: Observable<Employee>) {
-        result.subscribe((res: Employee) =>
+    private subscribeToSaveResponse(result: Observable<Company>) {
+        result.subscribe((res: Company) =>
             this.onSaveSuccess(res), (res: Response) => this.onSaveError(res));
     }
 
-    private onSaveSuccess(result: Employee) {
-        this.eventManager.broadcast({ name: 'employeeListModification', content: 'OK'});
+    private onSaveSuccess(result: Company) {
+        this.eventManager.broadcast({ name: 'companyListModification', content: 'OK'});
         this.isSaving = false;
         this.activeModal.dismiss(result);
     }
@@ -78,33 +70,29 @@ export class EmployeeDialogComponent implements OnInit {
     private onError(error) {
         this.alertService.error(error.message, null, null);
     }
-
-    trackCompanyById(index: number, item: Company) {
-        return item.id;
-    }
 }
 
 @Component({
-    selector: 'jhi-employee-popup',
+    selector: 'jhi-company-popup',
     template: ''
 })
-export class EmployeePopupComponent implements OnInit, OnDestroy {
+export class CompanyPopupComponent implements OnInit, OnDestroy {
 
     routeSub: any;
 
     constructor(
         private route: ActivatedRoute,
-        private employeePopupService: EmployeePopupService
+        private companyPopupService: CompanyPopupService
     ) {}
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
             if ( params['id'] ) {
-                this.employeePopupService
-                    .open(EmployeeDialogComponent as Component, params['id']);
+                this.companyPopupService
+                    .open(CompanyDialogComponent as Component, params['id']);
             } else {
-                this.employeePopupService
-                    .open(EmployeeDialogComponent as Component);
+                this.companyPopupService
+                    .open(CompanyDialogComponent as Component);
             }
         });
     }
