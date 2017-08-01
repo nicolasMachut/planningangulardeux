@@ -4,4 +4,6 @@ import { Component } from '@angular/core';
     selector: 'leftNavDashboard',
     templateUrl: './left-nav-dashboard.component.html'
 })
-export class LeftNavDashboard {}
+export class LeftNavDashboard {
+
+}

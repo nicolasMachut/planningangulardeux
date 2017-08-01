@@ -7,9 +7,9 @@
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
                 "main": "Entités",
-                "employee": "Employee",
-                "company": "Company",
-                "timeSlot": "Time Slot",
+                "employee": "Collaborateur",
+                "company": "Entreprise",
+                "timeSlot": "Plage horaire",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
