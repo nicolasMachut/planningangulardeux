@@ -1,0 +1,48 @@
+<ul class="nav nav-pills flex-column">
+    <li class="nav-item">
+        <a class="nav-link" href="#">Overview <span class="sr-only">(current)</span></a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" routerLink="employee" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+            <span jhiTranslate="global.menu.entities.employee">Employee</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" routerLink="company" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+            <span jhiTranslate="global.menu.entities.company">Company</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" routerLink="time-slot" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+            <span jhiTranslate="global.menu.entities.timeSlot">Time Slot</span>
+        </a>
+    </li>
+</ul>
+
+<ul class="nav nav-pills flex-column">
+    <li class="nav-item">
+        <a class="nav-link" href="#">Nav item</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#">Nav item again</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#">One more nav</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#">Another nav item</a>
+    </li>
+</ul>
+
+<ul class="nav nav-pills flex-column">
+    <li class="nav-item">
+        <a class="nav-link" href="#">Nav item again</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#">One more nav</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#">Another nav item</a>
+    </li>
+</ul>
+
