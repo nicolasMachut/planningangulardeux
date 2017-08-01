@@ -48,6 +48,9 @@ public class TimeSlotResourceIntTest {
     private static final Instant DEFAULT_CLOSING = Instant.ofEpochMilli(0L);
     private static final Instant UPDATED_CLOSING = Instant.now().truncatedTo(ChronoUnit.MILLIS);
 
+    private static final Integer DEFAULT_NUMBER_OF_PEOPLE_NEEDED = 1;
+    private static final Integer UPDATED_NUMBER_OF_PEOPLE_NEEDED = 2;
+
     @Autowired
     private TimeSlotRepository timeSlotRepository;
 
@@ -92,7 +95,8 @@ public class TimeSlotResourceIntTest {
     public static TimeSlot createEntity(EntityManager em) {
         TimeSlot timeSlot = new TimeSlot()
             .opening(DEFAULT_OPENING)
-            .closing(DEFAULT_CLOSING);
+            .closing(DEFAULT_CLOSING)
+            .numberOfPeopleNeeded(DEFAULT_NUMBER_OF_PEOPLE_NEEDED);
         return timeSlot;
     }
 
@@ -119,6 +123,7 @@ public class TimeSlotResourceIntTest {
         TimeSlot testTimeSlot = timeSlotList.get(timeSlotList.size() - 1);
         assertThat(testTimeSlot.getOpening()).isEqualTo(DEFAULT_OPENING);
         assertThat(testTimeSlot.getClosing()).isEqualTo(DEFAULT_CLOSING);
+        assertThat(testTimeSlot.getNumberOfPeopleNeeded()).isEqualTo(DEFAULT_NUMBER_OF_PEOPLE_NEEDED);
     }
 
     @Test
@@ -181,6 +186,25 @@ public class TimeSlotResourceIntTest {
 
     @Test
     @Transactional
+    public void checkNumberOfPeopleNeededIsRequired() throws Exception {
+        int databaseSizeBeforeTest = timeSlotRepository.findAll().size();
+        // set the field null
+        timeSlot.setNumberOfPeopleNeeded(null);
+
+        // Create the TimeSlot, which fails.
+        TimeSlotDTO timeSlotDTO = timeSlotMapper.toDto(timeSlot);
+
+        restTimeSlotMockMvc.perform(post("/api/time-slots")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(timeSlotDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<TimeSlot> timeSlotList = timeSlotRepository.findAll();
+        assertThat(timeSlotList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllTimeSlots() throws Exception {
         // Initialize the database
         timeSlotRepository.saveAndFlush(timeSlot);
@@ -191,7 +215,8 @@ public class TimeSlotResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(timeSlot.getId().intValue())))
             .andExpect(jsonPath("$.[*].opening").value(hasItem(DEFAULT_OPENING.toString())))
-            .andExpect(jsonPath("$.[*].closing").value(hasItem(DEFAULT_CLOSING.toString())));
+            .andExpect(jsonPath("$.[*].closing").value(hasItem(DEFAULT_CLOSING.toString())))
+            .andExpect(jsonPath("$.[*].numberOfPeopleNeeded").value(hasItem(DEFAULT_NUMBER_OF_PEOPLE_NEEDED)));
     }
 
     @Test
@@ -206,7 +231,8 @@ public class TimeSlotResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(timeSlot.getId().intValue()))
             .andExpect(jsonPath("$.opening").value(DEFAULT_OPENING.toString()))
-            .andExpect(jsonPath("$.closing").value(DEFAULT_CLOSING.toString()));
+            .andExpect(jsonPath("$.closing").value(DEFAULT_CLOSING.toString()))
+            .andExpect(jsonPath("$.numberOfPeopleNeeded").value(DEFAULT_NUMBER_OF_PEOPLE_NEEDED));
     }
 
     @Test
@@ -228,7 +254,8 @@ public class TimeSlotResourceIntTest {
         TimeSlot updatedTimeSlot = timeSlotRepository.findOne(timeSlot.getId());
         updatedTimeSlot
             .opening(UPDATED_OPENING)
-            .closing(UPDATED_CLOSING);
+            .closing(UPDATED_CLOSING)
+            .numberOfPeopleNeeded(UPDATED_NUMBER_OF_PEOPLE_NEEDED);
         TimeSlotDTO timeSlotDTO = timeSlotMapper.toDto(updatedTimeSlot);
 
         restTimeSlotMockMvc.perform(put("/api/time-slots")
@@ -242,6 +269,7 @@ public class TimeSlotResourceIntTest {
         TimeSlot testTimeSlot = timeSlotList.get(timeSlotList.size() - 1);
         assertThat(testTimeSlot.getOpening()).isEqualTo(UPDATED_OPENING);
         assertThat(testTimeSlot.getClosing()).isEqualTo(UPDATED_CLOSING);
+        assertThat(testTimeSlot.getNumberOfPeopleNeeded()).isEqualTo(UPDATED_NUMBER_OF_PEOPLE_NEEDED);
     }
 
     @Test

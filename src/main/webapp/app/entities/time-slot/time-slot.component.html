@@ -16,17 +16,17 @@
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="opening"><span jhiTranslate="planningAngularDeuxApp.timeSlot.opening">Opening</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="closing"><span jhiTranslate="planningAngularDeuxApp.timeSlot.closing">Closing</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="numberOfPeopleNeeded"><span jhiTranslate="planningAngularDeuxApp.timeSlot.numberOfPeopleNeeded">Number Of People Needed</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let timeSlot of timeSlots ;trackBy: trackId">
-                <td><a [routerLink]="['../time-slot', timeSlot.id ]">{{timeSlot.id}}</a></td>
                 <td>{{timeSlot.opening | date:'medium'}}</td>
                 <td>{{timeSlot.closing | date:'medium'}}</td>
+                <td>{{timeSlot.numberOfPeopleNeeded}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

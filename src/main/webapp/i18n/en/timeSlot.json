@@ -16,7 +16,8 @@
                 "title": "Time Slot"
             },
             "opening": "Opening",
-            "closing": "Closing"
+            "closing": "Closing",
+            "numberOfPeopleNeeded": "Number Of People Needed"
         }
     }
 }

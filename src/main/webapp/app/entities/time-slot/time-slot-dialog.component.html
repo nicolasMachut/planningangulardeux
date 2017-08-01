@@ -46,6 +46,21 @@
                 </small>
             </div>
         </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="planningAngularDeuxApp.timeSlot.numberOfPeopleNeeded" for="field_numberOfPeopleNeeded">Number Of People Needed</label>
+            <input type="number" class="form-control" name="numberOfPeopleNeeded" id="field_numberOfPeopleNeeded"
+                [(ngModel)]="timeSlot.numberOfPeopleNeeded" required />
+            <div [hidden]="!(editForm.controls.numberOfPeopleNeeded?.dirty && editForm.controls.numberOfPeopleNeeded?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.numberOfPeopleNeeded?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.numberOfPeopleNeeded?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
 
     </div>
     <div class="modal-footer">

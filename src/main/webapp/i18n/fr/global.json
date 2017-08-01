@@ -10,6 +10,7 @@
                 "employee": "Collaborateur",
                 "company": "Entreprise",
                 "timeSlot": "Plage horaire",
+                "timeSlot": "Time Slot",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

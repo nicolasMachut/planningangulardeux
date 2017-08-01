@@ -5,6 +5,7 @@ export class TimeSlot implements BaseEntity {
         public id?: number,
         public opening?: any,
         public closing?: any,
+        public numberOfPeopleNeeded?: number,
     ) {
     }
 }

@@ -32,6 +32,10 @@ public class TimeSlot implements Serializable {
     @Column(name = "closing", nullable = false)
     private Instant closing;
 
+    @NotNull
+    @Column(name = "number_of_people_needed", nullable = false)
+    private Integer numberOfPeopleNeeded;
+
     public Long getId() {
         return id;
     }
@@ -66,6 +70,19 @@ public class TimeSlot implements Serializable {
         this.closing = closing;
     }
 
+    public Integer getNumberOfPeopleNeeded() {
+        return numberOfPeopleNeeded;
+    }
+
+    public TimeSlot numberOfPeopleNeeded(Integer numberOfPeopleNeeded) {
+        this.numberOfPeopleNeeded = numberOfPeopleNeeded;
+        return this;
+    }
+
+    public void setNumberOfPeopleNeeded(Integer numberOfPeopleNeeded) {
+        this.numberOfPeopleNeeded = numberOfPeopleNeeded;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -92,6 +109,7 @@ public class TimeSlot implements Serializable {
             "id=" + getId() +
             ", opening='" + getOpening() + "'" +
             ", closing='" + getClosing() + "'" +
+            ", numberOfPeopleNeeded='" + getNumberOfPeopleNeeded() + "'" +
             "}";
     }
 }

@@ -2,21 +2,22 @@
     "planningAngularDeuxApp": {
         "timeSlot" : {
             "home": {
-                "title": "Plage horaire",
-                "createLabel": "Créer une nouvelle plage horaire",
-                "createOrEditLabel": "Créer ou éditer une plage horaire"
+                "title": "TimeSlots",
+                "createLabel": "Créer un nouveau Time Slot",
+                "createOrEditLabel": "Créer ou éditer un Time Slot"
             },
-            "created": "une nouvelle plage horaire a été créée avec l'identifiant {{ param }}",
-            "updated": "La plage horaire avec l'identifiant {{ param }} a été mis à jour",
-            "deleted": "La plage horaire avec l'identifiant {{ param }} a été supprimé",
+            "created": "Un nouveau Time Slot a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Time Slot avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Time Slot avec l'identifiant {{ param }} a été supprimé",
             "delete": {
-                "question": "Etes-vous certain de vouloir supprimer la plage horaire {{ id }} ?"
+                "question": "Etes-vous certain de vouloir supprimer le Time Slot {{ id }} ?"
             },
             "detail": {
-                "title": "Plage horaire"
+                "title": "Time Slot"
             },
-            "opening": "Ouverture",
-            "closing": "Fermeture"
+            "opening": "Opening",
+            "closing": "Closing",
+            "numberOfPeopleNeeded": "Number Of People Needed"
         }
     }
 }

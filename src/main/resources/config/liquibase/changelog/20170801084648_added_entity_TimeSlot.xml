@@ -29,6 +29,10 @@
                 <constraints nullable="false" />
             </column>
 
+            <column name="number_of_people_needed" type="integer">
+                <constraints nullable="false" />
+            </column>
+
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
         <dropDefaultValue tableName="time_slot" columnName="opening" columnDataType="datetime"/>

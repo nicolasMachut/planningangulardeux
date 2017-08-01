@@ -19,6 +19,9 @@ public class TimeSlotDTO implements Serializable {
     @NotNull
     private Instant closing;
 
+    @NotNull
+    private Integer numberOfPeopleNeeded;
+
     public Long getId() {
         return id;
     }
@@ -41,6 +44,14 @@ public class TimeSlotDTO implements Serializable {
 
     public void setClosing(Instant closing) {
         this.closing = closing;
+    }
+
+    public Integer getNumberOfPeopleNeeded() {
+        return numberOfPeopleNeeded;
+    }
+
+    public void setNumberOfPeopleNeeded(Integer numberOfPeopleNeeded) {
+        this.numberOfPeopleNeeded = numberOfPeopleNeeded;
     }
 
     @Override
@@ -70,6 +81,7 @@ public class TimeSlotDTO implements Serializable {
             "id=" + getId() +
             ", opening='" + getOpening() + "'" +
             ", closing='" + getClosing() + "'" +
+            ", numberOfPeopleNeeded='" + getNumberOfPeopleNeeded() + "'" +
             "}";
     }
 }
