@@ -20,6 +20,7 @@
             <th jhiSortBy="firstName"><span jhiTranslate="planningAngularDeuxApp.employee.firstName">First Name</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="lastName"><span jhiTranslate="planningAngularDeuxApp.employee.lastName">Last Name</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="birthDate"><span jhiTranslate="planningAngularDeuxApp.employee.birthDate">Birth Date</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="hoursPerWeek"><span jhiTranslate="planningAngularDeuxApp.employee.hoursPerWeek">Hours Per Week</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="companyName"><span jhiTranslate="planningAngularDeuxApp.employee.company">Company</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
@@ -30,6 +31,7 @@
                 <td>{{employee.firstName}}</td>
                 <td>{{employee.lastName}}</td>
                 <td>{{employee.birthDate | date:'mediumDate'}}</td>
+                <td>{{employee.hoursPerWeek}}</td>
                 <td>
                     <div *ngIf="employee.companyId">
                         <a [routerLink]="['../company', employee.companyId  ]" >{{employee.companyName}}</a>

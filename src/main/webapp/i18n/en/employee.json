@@ -18,6 +18,7 @@
             "firstName": "First Name",
             "lastName": "Last Name",
             "birthDate": "Birth Date",
+            "hoursPerWeek": "Hours Per Week",
             "company": "Company"
         }
     }

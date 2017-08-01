@@ -24,6 +24,9 @@ public class EmployeeDTO implements Serializable {
     @NotNull
     private LocalDate birthDate;
 
+    @NotNull
+    private Integer hoursPerWeek;
+
     private Long companyId;
 
     private String companyName;
@@ -58,6 +61,14 @@ public class EmployeeDTO implements Serializable {
 
     public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public Integer getHoursPerWeek() {
+        return hoursPerWeek;
+    }
+
+    public void setHoursPerWeek(Integer hoursPerWeek) {
+        this.hoursPerWeek = hoursPerWeek;
     }
 
     public Long getCompanyId() {
@@ -104,6 +115,7 @@ public class EmployeeDTO implements Serializable {
             ", firstName='" + getFirstName() + "'" +
             ", lastName='" + getLastName() + "'" +
             ", birthDate='" + getBirthDate() + "'" +
+            ", hoursPerWeek='" + getHoursPerWeek() + "'" +
             "}";
     }
 }

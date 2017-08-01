@@ -33,6 +33,10 @@
                 <constraints nullable="false" />
             </column>
 
+            <column name="hours_per_week" type="integer">
+                <constraints nullable="false" />
+            </column>
+
             <column name="company_id" type="bigint">
                 <constraints nullable="false" />
             </column>

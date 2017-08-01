@@ -36,6 +36,10 @@ public class Employee implements Serializable {
     @Column(name = "birth_date", nullable = false)
     private LocalDate birthDate;
 
+    @NotNull
+    @Column(name = "hours_per_week", nullable = false)
+    private Integer hoursPerWeek;
+
     @ManyToOne(optional = false)
     @NotNull
     private Company company;
@@ -87,6 +91,19 @@ public class Employee implements Serializable {
         this.birthDate = birthDate;
     }
 
+    public Integer getHoursPerWeek() {
+        return hoursPerWeek;
+    }
+
+    public Employee hoursPerWeek(Integer hoursPerWeek) {
+        this.hoursPerWeek = hoursPerWeek;
+        return this;
+    }
+
+    public void setHoursPerWeek(Integer hoursPerWeek) {
+        this.hoursPerWeek = hoursPerWeek;
+    }
+
     public Company getCompany() {
         return company;
     }
@@ -127,6 +144,7 @@ public class Employee implements Serializable {
             ", firstName='" + getFirstName() + "'" +
             ", lastName='" + getLastName() + "'" +
             ", birthDate='" + getBirthDate() + "'" +
+            ", hoursPerWeek='" + getHoursPerWeek() + "'" +
             "}";
     }
 }

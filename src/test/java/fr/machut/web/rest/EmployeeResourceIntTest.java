@@ -52,6 +52,9 @@ public class EmployeeResourceIntTest {
     private static final LocalDate DEFAULT_BIRTH_DATE = LocalDate.ofEpochDay(0L);
     private static final LocalDate UPDATED_BIRTH_DATE = LocalDate.now(ZoneId.systemDefault());
 
+    private static final Integer DEFAULT_HOURS_PER_WEEK = 1;
+    private static final Integer UPDATED_HOURS_PER_WEEK = 2;
+
     @Autowired
     private EmployeeRepository employeeRepository;
 
@@ -97,7 +100,8 @@ public class EmployeeResourceIntTest {
         Employee employee = new Employee()
             .firstName(DEFAULT_FIRST_NAME)
             .lastName(DEFAULT_LAST_NAME)
-            .birthDate(DEFAULT_BIRTH_DATE);
+            .birthDate(DEFAULT_BIRTH_DATE)
+            .hoursPerWeek(DEFAULT_HOURS_PER_WEEK);
         // Add required entity
         Company company = CompanyResourceIntTest.createEntity(em);
         em.persist(company);
@@ -130,6 +134,7 @@ public class EmployeeResourceIntTest {
         assertThat(testEmployee.getFirstName()).isEqualTo(DEFAULT_FIRST_NAME);
         assertThat(testEmployee.getLastName()).isEqualTo(DEFAULT_LAST_NAME);
         assertThat(testEmployee.getBirthDate()).isEqualTo(DEFAULT_BIRTH_DATE);
+        assertThat(testEmployee.getHoursPerWeek()).isEqualTo(DEFAULT_HOURS_PER_WEEK);
     }
 
     @Test
@@ -211,6 +216,25 @@ public class EmployeeResourceIntTest {
 
     @Test
     @Transactional
+    public void checkHoursPerWeekIsRequired() throws Exception {
+        int databaseSizeBeforeTest = employeeRepository.findAll().size();
+        // set the field null
+        employee.setHoursPerWeek(null);
+
+        // Create the Employee, which fails.
+        EmployeeDTO employeeDTO = employeeMapper.toDto(employee);
+
+        restEmployeeMockMvc.perform(post("/api/employees")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(employeeDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<Employee> employeeList = employeeRepository.findAll();
+        assertThat(employeeList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllEmployees() throws Exception {
         // Initialize the database
         employeeRepository.saveAndFlush(employee);
@@ -222,7 +246,8 @@ public class EmployeeResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(employee.getId().intValue())))
             .andExpect(jsonPath("$.[*].firstName").value(hasItem(DEFAULT_FIRST_NAME.toString())))
             .andExpect(jsonPath("$.[*].lastName").value(hasItem(DEFAULT_LAST_NAME.toString())))
-            .andExpect(jsonPath("$.[*].birthDate").value(hasItem(DEFAULT_BIRTH_DATE.toString())));
+            .andExpect(jsonPath("$.[*].birthDate").value(hasItem(DEFAULT_BIRTH_DATE.toString())))
+            .andExpect(jsonPath("$.[*].hoursPerWeek").value(hasItem(DEFAULT_HOURS_PER_WEEK)));
     }
 
     @Test
@@ -238,7 +263,8 @@ public class EmployeeResourceIntTest {
             .andExpect(jsonPath("$.id").value(employee.getId().intValue()))
             .andExpect(jsonPath("$.firstName").value(DEFAULT_FIRST_NAME.toString()))
             .andExpect(jsonPath("$.lastName").value(DEFAULT_LAST_NAME.toString()))
-            .andExpect(jsonPath("$.birthDate").value(DEFAULT_BIRTH_DATE.toString()));
+            .andExpect(jsonPath("$.birthDate").value(DEFAULT_BIRTH_DATE.toString()))
+            .andExpect(jsonPath("$.hoursPerWeek").value(DEFAULT_HOURS_PER_WEEK));
     }
 
     @Test
@@ -261,7 +287,8 @@ public class EmployeeResourceIntTest {
         updatedEmployee
             .firstName(UPDATED_FIRST_NAME)
             .lastName(UPDATED_LAST_NAME)
-            .birthDate(UPDATED_BIRTH_DATE);
+            .birthDate(UPDATED_BIRTH_DATE)
+            .hoursPerWeek(UPDATED_HOURS_PER_WEEK);
         EmployeeDTO employeeDTO = employeeMapper.toDto(updatedEmployee);
 
         restEmployeeMockMvc.perform(put("/api/employees")
@@ -276,6 +303,7 @@ public class EmployeeResourceIntTest {
         assertThat(testEmployee.getFirstName()).isEqualTo(UPDATED_FIRST_NAME);
         assertThat(testEmployee.getLastName()).isEqualTo(UPDATED_LAST_NAME);
         assertThat(testEmployee.getBirthDate()).isEqualTo(UPDATED_BIRTH_DATE);
+        assertThat(testEmployee.getHoursPerWeek()).isEqualTo(UPDATED_HOURS_PER_WEEK);
     }
 
     @Test

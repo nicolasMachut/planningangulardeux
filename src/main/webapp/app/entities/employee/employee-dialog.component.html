@@ -50,6 +50,21 @@
                 </small>
             </div>
         </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="planningAngularDeuxApp.employee.hoursPerWeek" for="field_hoursPerWeek">Hours Per Week</label>
+            <input type="number" class="form-control" name="hoursPerWeek" id="field_hoursPerWeek"
+                [(ngModel)]="employee.hoursPerWeek" required />
+            <div [hidden]="!(editForm.controls.hoursPerWeek?.dirty && editForm.controls.hoursPerWeek?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.hoursPerWeek?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.hoursPerWeek?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
 
         <div class="form-group">
             <label jhiTranslate="planningAngularDeuxApp.employee.company" for="field_company">Company</label>
