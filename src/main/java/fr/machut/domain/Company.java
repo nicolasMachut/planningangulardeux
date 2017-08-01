@@ -27,6 +27,10 @@ public class Company implements Serializable {
     @Column(name = "name", nullable = false)
     private String name;
 
+    @NotNull
+    @Column(name = "max_hours_per_day", nullable = false)
+    private Integer maxHoursPerDay;
+
     @OneToOne(optional = false)
     @NotNull
     @JoinColumn(unique = true)
@@ -51,6 +55,19 @@ public class Company implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer getMaxHoursPerDay() {
+        return maxHoursPerDay;
+    }
+
+    public Company maxHoursPerDay(Integer maxHoursPerDay) {
+        this.maxHoursPerDay = maxHoursPerDay;
+        return this;
+    }
+
+    public void setMaxHoursPerDay(Integer maxHoursPerDay) {
+        this.maxHoursPerDay = maxHoursPerDay;
     }
 
     public TimeSlot getTimeSlot() {
@@ -91,6 +108,7 @@ public class Company implements Serializable {
         return "Company{" +
             "id=" + getId() +
             ", name='" + getName() + "'" +
+            ", maxHoursPerDay='" + getMaxHoursPerDay() + "'" +
             "}";
     }
 }

@@ -17,6 +17,9 @@ public class CompanyDTO implements Serializable {
     @NotNull
     private String name;
 
+    @NotNull
+    private Integer maxHoursPerDay;
+
     private Long timeSlotId;
 
     public Long getId() {
@@ -33,6 +36,14 @@ public class CompanyDTO implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer getMaxHoursPerDay() {
+        return maxHoursPerDay;
+    }
+
+    public void setMaxHoursPerDay(Integer maxHoursPerDay) {
+        this.maxHoursPerDay = maxHoursPerDay;
     }
 
     public Long getTimeSlotId() {
@@ -69,6 +80,7 @@ public class CompanyDTO implements Serializable {
         return "CompanyDTO{" +
             "id=" + getId() +
             ", name='" + getName() + "'" +
+            ", maxHoursPerDay='" + getMaxHoursPerDay() + "'" +
             "}";
     }
 }

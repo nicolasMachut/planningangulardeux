@@ -23,6 +23,21 @@
                 </small>
             </div>
         </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="planningAngularDeuxApp.company.maxHoursPerDay" for="field_maxHoursPerDay">Max Hours Per Day</label>
+            <input type="number" class="form-control" name="maxHoursPerDay" id="field_maxHoursPerDay"
+                [(ngModel)]="company.maxHoursPerDay" required />
+            <div [hidden]="!(editForm.controls.maxHoursPerDay?.dirty && editForm.controls.maxHoursPerDay?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.maxHoursPerDay?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.maxHoursPerDay?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
 
         <div class="form-group">
             <label jhiTranslate="planningAngularDeuxApp.company.timeSlot" for="field_timeSlot">Time Slot</label>

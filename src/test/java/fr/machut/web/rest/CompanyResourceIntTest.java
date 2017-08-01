@@ -44,6 +44,9 @@ public class CompanyResourceIntTest {
     private static final String DEFAULT_NAME = "AAAAAAAAAA";
     private static final String UPDATED_NAME = "BBBBBBBBBB";
 
+    private static final Integer DEFAULT_MAX_HOURS_PER_DAY = 1;
+    private static final Integer UPDATED_MAX_HOURS_PER_DAY = 2;
+
     @Autowired
     private CompanyRepository companyRepository;
 
@@ -87,7 +90,8 @@ public class CompanyResourceIntTest {
      */
     public static Company createEntity(EntityManager em) {
         Company company = new Company()
-            .name(DEFAULT_NAME);
+            .name(DEFAULT_NAME)
+            .maxHoursPerDay(DEFAULT_MAX_HOURS_PER_DAY);
         // Add required entity
         TimeSlot timeSlot = TimeSlotResourceIntTest.createEntity(em);
         em.persist(timeSlot);
@@ -118,6 +122,7 @@ public class CompanyResourceIntTest {
         assertThat(companyList).hasSize(databaseSizeBeforeCreate + 1);
         Company testCompany = companyList.get(companyList.size() - 1);
         assertThat(testCompany.getName()).isEqualTo(DEFAULT_NAME);
+        assertThat(testCompany.getMaxHoursPerDay()).isEqualTo(DEFAULT_MAX_HOURS_PER_DAY);
     }
 
     @Test
@@ -161,6 +166,25 @@ public class CompanyResourceIntTest {
 
     @Test
     @Transactional
+    public void checkMaxHoursPerDayIsRequired() throws Exception {
+        int databaseSizeBeforeTest = companyRepository.findAll().size();
+        // set the field null
+        company.setMaxHoursPerDay(null);
+
+        // Create the Company, which fails.
+        CompanyDTO companyDTO = companyMapper.toDto(company);
+
+        restCompanyMockMvc.perform(post("/api/companies")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(companyDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<Company> companyList = companyRepository.findAll();
+        assertThat(companyList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllCompanies() throws Exception {
         // Initialize the database
         companyRepository.saveAndFlush(company);
@@ -170,7 +194,8 @@ public class CompanyResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(company.getId().intValue())))
-            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())));
+            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
+            .andExpect(jsonPath("$.[*].maxHoursPerDay").value(hasItem(DEFAULT_MAX_HOURS_PER_DAY)));
     }
 
     @Test
@@ -184,7 +209,8 @@ public class CompanyResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(company.getId().intValue()))
-            .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()));
+            .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
+            .andExpect(jsonPath("$.maxHoursPerDay").value(DEFAULT_MAX_HOURS_PER_DAY));
     }
 
     @Test
@@ -205,7 +231,8 @@ public class CompanyResourceIntTest {
         // Update the company
         Company updatedCompany = companyRepository.findOne(company.getId());
         updatedCompany
-            .name(UPDATED_NAME);
+            .name(UPDATED_NAME)
+            .maxHoursPerDay(UPDATED_MAX_HOURS_PER_DAY);
         CompanyDTO companyDTO = companyMapper.toDto(updatedCompany);
 
         restCompanyMockMvc.perform(put("/api/companies")
@@ -218,6 +245,7 @@ public class CompanyResourceIntTest {
         assertThat(companyList).hasSize(databaseSizeBeforeUpdate);
         Company testCompany = companyList.get(companyList.size() - 1);
         assertThat(testCompany.getName()).isEqualTo(UPDATED_NAME);
+        assertThat(testCompany.getMaxHoursPerDay()).isEqualTo(UPDATED_MAX_HOURS_PER_DAY);
     }
 
     @Test

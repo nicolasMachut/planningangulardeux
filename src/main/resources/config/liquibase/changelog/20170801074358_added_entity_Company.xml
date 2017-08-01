@@ -24,6 +24,10 @@
             <column name="name" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
+
+            <column name="max_hours_per_day" type="integer">
+                <constraints nullable="false" />
+            </column>
             <column name="time_slot_id" type="bigint">
                 <constraints unique="true" nullable="false" />
             </column>

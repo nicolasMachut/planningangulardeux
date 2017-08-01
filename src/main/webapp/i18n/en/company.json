@@ -16,6 +16,7 @@
                 "title": "Company"
             },
             "name": "Name",
+            "maxHoursPerDay": "Max Hours Per Day",
             "timeSlot": "Time Slot"
         }
     }
