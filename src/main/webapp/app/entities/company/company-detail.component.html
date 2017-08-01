@@ -8,6 +8,12 @@
         <dd>
             <span>{{company.name}}</span>
         </dd>
+        <dt><span jhiTranslate="planningAngularDeuxApp.company.timeSlot">Time Slot</span></dt>
+        <dd>
+            <div *ngIf="company.timeSlotId">
+                <a [routerLink]="['/time-slot', company.timeSlotId]">{{company.timeSlotId}}</a>
+            </div>
+        </dd>
     </dl>
 
     <button type="submit"

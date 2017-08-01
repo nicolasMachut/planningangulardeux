@@ -3,6 +3,7 @@ package fr.machut.web.rest;
 import fr.machut.PlanningAngularDeuxApp;
 
 import fr.machut.domain.Company;
+import fr.machut.domain.TimeSlot;
 import fr.machut.repository.CompanyRepository;
 import fr.machut.service.CompanyService;
 import fr.machut.service.dto.CompanyDTO;
@@ -87,6 +88,11 @@ public class CompanyResourceIntTest {
     public static Company createEntity(EntityManager em) {
         Company company = new Company()
             .name(DEFAULT_NAME);
+        // Add required entity
+        TimeSlot timeSlot = TimeSlotResourceIntTest.createEntity(em);
+        em.persist(timeSlot);
+        em.flush();
+        company.setTimeSlot(timeSlot);
         return company;
     }
 

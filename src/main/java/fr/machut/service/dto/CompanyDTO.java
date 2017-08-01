@@ -3,6 +3,8 @@ package fr.machut.service.dto;
 
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -14,6 +16,8 @@ public class CompanyDTO implements Serializable {
 
     @NotNull
     private String name;
+
+    private Long timeSlotId;
 
     public Long getId() {
         return id;
@@ -29,6 +33,14 @@ public class CompanyDTO implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Long getTimeSlotId() {
+        return timeSlotId;
+    }
+
+    public void setTimeSlotId(Long timeSlotId) {
+        this.timeSlotId = timeSlotId;
     }
 
     @Override

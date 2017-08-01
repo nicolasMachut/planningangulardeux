@@ -9,6 +9,8 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { Company } from './company.model';
 import { CompanyPopupService } from './company-popup.service';
 import { CompanyService } from './company.service';
+import { TimeSlot, TimeSlotService } from '../time-slot';
+import { ResponseWrapper } from '../../shared';
 
 @Component({
     selector: 'jhi-company-dialog',
@@ -19,16 +21,32 @@ export class CompanyDialogComponent implements OnInit {
     company: Company;
     isSaving: boolean;
 
+    timeslots: TimeSlot[];
+
     constructor(
         public activeModal: NgbActiveModal,
         private alertService: JhiAlertService,
         private companyService: CompanyService,
+        private timeSlotService: TimeSlotService,
         private eventManager: JhiEventManager
     ) {
     }
 
     ngOnInit() {
         this.isSaving = false;
+        this.timeSlotService
+            .query({filter: 'company-is-null'})
+            .subscribe((res: ResponseWrapper) => {
+                if (!this.company.timeSlotId) {
+                    this.timeslots = res.json;
+                } else {
+                    this.timeSlotService
+                        .find(this.company.timeSlotId)
+                        .subscribe((subRes: TimeSlot) => {
+                            this.timeslots = [subRes].concat(res.json);
+                        }, (subRes: ResponseWrapper) => this.onError(subRes.json));
+                }
+            }, (res: ResponseWrapper) => this.onError(res.json));
     }
 
     clear() {
@@ -69,6 +87,10 @@ export class CompanyDialogComponent implements OnInit {
 
     private onError(error) {
         this.alertService.error(error.message, null, null);
+    }
+
+    trackTimeSlotById(index: number, item: TimeSlot) {
+        return item.id;
     }
 }
 

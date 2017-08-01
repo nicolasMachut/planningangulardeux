@@ -1,0 +1,22 @@
+{
+    "planningAngularDeuxApp": {
+        "timeSlot" : {
+            "home": {
+                "title": "TimeSlots",
+                "createLabel": "Créer un nouveau Time Slot",
+                "createOrEditLabel": "Créer ou éditer un Time Slot"
+            },
+            "created": "Un nouveau Time Slot a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Time Slot avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Time Slot avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Time Slot {{ id }} ?"
+            },
+            "detail": {
+                "title": "Time Slot"
+            },
+            "opening": "Opening",
+            "closing": "Closing"
+        }
+    }
+}

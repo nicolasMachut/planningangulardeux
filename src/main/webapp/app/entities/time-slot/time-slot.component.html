@@ -1,10 +1,10 @@
 <div>
     <h2>
-        <span jhiTranslate="planningAngularDeuxApp.company.home.title">Companies</span>
-        <button class="btn btn-primary float-right jh-create-entity create-company" [routerLink]="['/', { outlets: { popup: ['company-new'] } }]">
+        <span jhiTranslate="planningAngularDeuxApp.timeSlot.home.title">Time Slots</span>
+        <button class="btn btn-primary float-right jh-create-entity create-time-slot" [routerLink]="['/', { outlets: { popup: ['time-slot-new'] } }]">
             <span class="fa fa-plus"></span>
-            <span  jhiTranslate="planningAngularDeuxApp.company.home.createLabel">
-            Create new Company
+            <span  jhiTranslate="planningAngularDeuxApp.timeSlot.home.createLabel">
+            Create new Time Slot
             </span>
         </button>
     </h2>
@@ -12,42 +12,38 @@
     <div class="row">
     </div>
     <br/>
-    <div class="table-responsive" *ngIf="companies">
+    <div class="table-responsive" *ngIf="timeSlots">
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="name"><span jhiTranslate="planningAngularDeuxApp.company.name">Name</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="timeSlotId"><span jhiTranslate="planningAngularDeuxApp.company.timeSlot">Time Slot</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="opening"><span jhiTranslate="planningAngularDeuxApp.timeSlot.opening">Opening</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="closing"><span jhiTranslate="planningAngularDeuxApp.timeSlot.closing">Closing</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let company of companies ;trackBy: trackId">
-                <td><a [routerLink]="['../company', company.id ]">{{company.id}}</a></td>
-                <td>{{company.name}}</td>
-                <td>
-                    <div *ngIf="company.timeSlotId">
-                        <a [routerLink]="['../time-slot', company.timeSlotId  ]" >{{company.timeSlotId}}</a>
-                    </div>
-                </td>
+            <tr *ngFor="let timeSlot of timeSlots ;trackBy: trackId">
+                <td><a [routerLink]="['../time-slot', timeSlot.id ]">{{timeSlot.id}}</a></td>
+                <td>{{timeSlot.opening | date:'medium'}}</td>
+                <td>{{timeSlot.closing | date:'medium'}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"
-                                [routerLink]="['../company', company.id ]"
+                                [routerLink]="['../time-slot', timeSlot.id ]"
                                 class="btn btn-info btn-sm">
                             <span class="fa fa-eye"></span>
                             <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
                         </button>
                         <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'company/'+ company.id + '/edit'} }]"
+                                [routerLink]="['/', { outlets: { popup: 'time-slot/'+ timeSlot.id + '/edit'} }]"
                                 replaceUrl="true"
                                 class="btn btn-primary btn-sm">
                             <span class="fa fa-pencil"></span>
                             <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
                         </button>
                         <button type="submit"
-                                [routerLink]="['/', { outlets: { popup: 'company/'+ company.id + '/delete'} }]"
+                                [routerLink]="['/', { outlets: { popup: 'time-slot/'+ timeSlot.id + '/delete'} }]"
                                 replaceUrl="true"
                                 class="btn btn-danger btn-sm">
                             <span class="fa fa-remove"></span>
@@ -59,7 +55,7 @@
             </tbody>
         </table>
     </div>
-        <div *ngIf="companies && companies.length">
+        <div *ngIf="timeSlots && timeSlots.length">
             <div class="row justify-content-center">
                 <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
             </div>

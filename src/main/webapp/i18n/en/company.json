@@ -15,7 +15,8 @@
             "detail": {
                 "title": "Company"
             },
-            "name": "Name"
+            "name": "Name",
+            "timeSlot": "Time Slot"
         }
     }
 }

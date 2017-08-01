@@ -14,21 +14,25 @@
     <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
 
     <!--
-        Added the entity Company.
+        Added the entity TimeSlot.
     -->
-    <changeSet id="20170801074358-1" author="jhipster">
-        <createTable tableName="company">
+    <changeSet id="20170801084648-1" author="jhipster">
+        <createTable tableName="time_slot">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="name" type="varchar(255)">
+            <column name="opening" type="timestamp">
                 <constraints nullable="false" />
             </column>
-            <column name="time_slot_id" type="bigint">
-                <constraints unique="true" nullable="false" />
+
+            <column name="closing" type="timestamp">
+                <constraints nullable="false" />
             </column>
+
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
+        <dropDefaultValue tableName="time_slot" columnName="opening" columnDataType="datetime"/>
+        <dropDefaultValue tableName="time_slot" columnName="closing" columnDataType="datetime"/>
         
     </changeSet>
 </databaseChangeLog>

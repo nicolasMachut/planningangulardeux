@@ -6,15 +6,16 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.Objects;
 
 /**
- * A Company.
+ * A TimeSlot.
  */
 @Entity
-@Table(name = "company")
+@Table(name = "time_slot")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class Company implements Serializable {
+public class TimeSlot implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -24,13 +25,12 @@ public class Company implements Serializable {
     private Long id;
 
     @NotNull
-    @Column(name = "name", nullable = false)
-    private String name;
+    @Column(name = "opening", nullable = false)
+    private Instant opening;
 
-    @OneToOne(optional = false)
     @NotNull
-    @JoinColumn(unique = true)
-    private TimeSlot timeSlot;
+    @Column(name = "closing", nullable = false)
+    private Instant closing;
 
     public Long getId() {
         return id;
@@ -40,30 +40,30 @@ public class Company implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public Instant getOpening() {
+        return opening;
     }
 
-    public Company name(String name) {
-        this.name = name;
+    public TimeSlot opening(Instant opening) {
+        this.opening = opening;
         return this;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setOpening(Instant opening) {
+        this.opening = opening;
     }
 
-    public TimeSlot getTimeSlot() {
-        return timeSlot;
+    public Instant getClosing() {
+        return closing;
     }
 
-    public Company timeSlot(TimeSlot timeSlot) {
-        this.timeSlot = timeSlot;
+    public TimeSlot closing(Instant closing) {
+        this.closing = closing;
         return this;
     }
 
-    public void setTimeSlot(TimeSlot timeSlot) {
-        this.timeSlot = timeSlot;
+    public void setClosing(Instant closing) {
+        this.closing = closing;
     }
 
     @Override
@@ -74,11 +74,11 @@ public class Company implements Serializable {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Company company = (Company) o;
-        if (company.getId() == null || getId() == null) {
+        TimeSlot timeSlot = (TimeSlot) o;
+        if (timeSlot.getId() == null || getId() == null) {
             return false;
         }
-        return Objects.equals(getId(), company.getId());
+        return Objects.equals(getId(), timeSlot.getId());
     }
 
     @Override
@@ -88,9 +88,10 @@ public class Company implements Serializable {
 
     @Override
     public String toString() {
-        return "Company{" +
+        return "TimeSlot{" +
             "id=" + getId() +
-            ", name='" + getName() + "'" +
+            ", opening='" + getOpening() + "'" +
+            ", closing='" + getClosing() + "'" +
             "}";
     }
 }

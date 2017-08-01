@@ -9,6 +9,7 @@
                 "main": "Entities",
                 "employee": "Employee",
                 "company": "Company",
+                "timeSlot": "Time Slot",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
