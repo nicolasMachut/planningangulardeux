@@ -1,26 +1,75 @@
-<div class="row">
-    <div class="col-md-3">
-        <span class="hipster img-fluid img-rounded"></span>
-    </div>
-    <div class="col-md-9">
-        <h1 class="display-4" jhiTranslate="home.title">Coucou, c'est un planning intelligent !</h1>
+<div [ngSwitch]="isAuthenticated()">
 
-        <div [ngSwitch]="isAuthenticated()">
-            <div class="alert alert-success" *ngSwitchCase="true">
+    <div *ngSwitchCase="true" class="row">
+        <nav class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar">
+            <ul class="nav nav-pills flex-column">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Overview <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Reports</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Analytics</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Export</a>
+                </li>
+            </ul>
+
+            <ul class="nav nav-pills flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Nav item</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Nav item again</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">One more nav</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Another nav item</a>
+                </li>
+            </ul>
+
+            <ul class="nav nav-pills flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Nav item again</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">One more nav</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Another nav item</a>
+                </li>
+            </ul>
+        </nav>
+
+
+        <div class="col-sm-9 col-md-10">
+            <div class="alert alert-success">
                 <span *ngIf="account" jhiTranslate="home.logged.message"
                       translateValues="{username: '{{account.login}}'}"> You are logged in as user "{{account.login}}". </span>
             </div>
+            <h1 class="display-4" jhiTranslate="home.dashBoard">My dashboard</h1>
+        </div>
+    </div>
 
-            <div class="alert alert-warning" *ngSwitchCase="false">
+    <div *ngSwitchCase="false" class="row">
+        <div class="col-md-3">
+            <span class="hipster img-fluid img-rounded"></span>
+        </div>
+        <div class="col-md-9">
+            <h1 class="display-4" jhiTranslate="home.title">Coucou, c'est un planning intelligent !</h1>
+            <div class="alert alert-warning">
                 <span jhiTranslate="global.messages.info.authenticated.prefix">If you want to </span>
                 <a class="alert-link" (click)="login()" jhiTranslate="global.messages.info.authenticated.link">sign in</a><span jhiTranslate="global.messages.info.authenticated.suffix">, you can try the default accounts:<br/>- Administrator (login="admin" and password="admin") <br/>- User (login="user" and password="user").</span>
             </div>
 
-            <div class="alert alert-warning" *ngSwitchCase="false">
+            <div class="alert alert-warning">
                 <span jhiTranslate="global.messages.info.register.noaccount">You don't have an account yet?</span>
                 <a class="alert-link" routerLink="register" jhiTranslate="global.messages.info.register.link">Register a new account</a>
             </div>
         </div>
-
     </div>
 </div>

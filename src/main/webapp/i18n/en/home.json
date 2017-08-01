@@ -1,6 +1,7 @@
 {
     "home": {
         "title": "Hi, it's a clever roster !",
+        "dashBoard" : "My dashboard",
         "subtitle": "This is your homepage",
         "logged": {
             "message": "You are logged in as user \"{{username}}\"."

@@ -1,6 +1,7 @@
 {
     "home": {
         "title": "Coucou, c'est un planning intelligent !",
+        "dashBoard" : "Mon tableau de bord",
         "subtitle": "Ceci est votre page d'accueil",
         "logged": {
             "message": "Vous êtes connecté en tant que \"{{username}}\"."
