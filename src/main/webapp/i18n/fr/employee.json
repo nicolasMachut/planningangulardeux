@@ -2,24 +2,24 @@
     "planningAngularDeuxApp": {
         "employee" : {
             "home": {
-                "title": "Employees",
-                "createLabel": "Créer un nouveau Employee",
-                "createOrEditLabel": "Créer ou éditer un Employee"
+                "title": "Collaborateur",
+                "createLabel": "Créer un nouveau Collaborateur",
+                "createOrEditLabel": "Créer ou éditer un Collaborateur"
             },
-            "created": "Un nouveau Employee a été créé avec l'identifiant {{ param }}",
-            "updated": "Le Employee avec l'identifiant {{ param }} a été mis à jour",
-            "deleted": "Le Employee avec l'identifiant {{ param }} a été supprimé",
+            "created": "Un nouveau Collaborateur a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Collaborateur avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Collaborateur avec l'identifiant {{ param }} a été supprimé",
             "delete": {
-                "question": "Etes-vous certain de vouloir supprimer le Employee {{ id }} ?"
+                "question": "Etes-vous certain de vouloir supprimer le Collaborateur {{ id }} ?"
             },
             "detail": {
-                "title": "Employee"
+                "title": "Collaborateur"
             },
-            "firstName": "First Name",
-            "lastName": "Last Name",
-            "birthDate": "Birth Date",
-            "hoursPerWeek": "Hours Per Week",
-            "company": "Company"
+            "firstName": "Prenom",
+            "lastName": "Nom de famille",
+            "birthDate": "Date de naissance",
+            "hoursPerWeek": "Nombre d'heures par semaine",
+            "company": "Entreprise"
         }
     }
 }

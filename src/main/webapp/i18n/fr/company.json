@@ -2,22 +2,22 @@
     "planningAngularDeuxApp": {
         "company" : {
             "home": {
-                "title": "Companies",
-                "createLabel": "Créer un nouveau Company",
-                "createOrEditLabel": "Créer ou éditer un Company"
+                "title": "Entreprises",
+                "createLabel": "Créer une nouvelle entreprise",
+                "createOrEditLabel": "Créer ou éditer une entreprise"
             },
-            "created": "Un nouveau Company a été créé avec l'identifiant {{ param }}",
-            "updated": "Le Company avec l'identifiant {{ param }} a été mis à jour",
-            "deleted": "Le Company avec l'identifiant {{ param }} a été supprimé",
+            "created": "Une nouvelle entreprise a été créé avec l'identifiant {{ param }}",
+            "updated": "L'entreprise avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "L'entreprise avec l'identifiant {{ param }} a été supprimé",
             "delete": {
-                "question": "Etes-vous certain de vouloir supprimer le Company {{ id }} ?"
+                "question": "Etes-vous certain de vouloir supprimer l'entreprise {{ id }} ?"
             },
             "detail": {
-                "title": "Company"
+                "title": "Entreprise"
             },
-            "name": "Name",
-            "maxHoursPerDay": "Max Hours Per Day",
-            "timeSlot": "Time Slot"
+            "name": "Nom",
+            "maxHoursPerDay": "Nombre d'heures maximum par jour",
+            "timeSlot": "Plage Horaire"
         }
     }
 }
